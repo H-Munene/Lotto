@@ -12,22 +12,29 @@
         <maven.compiler.target>18</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.restheart</groupId>
-            <artifactId>restheart-mongoclient-provider</artifactId>
-            <version>7.3.2</version>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.8.2</version>
         </dependency>
+
         <dependency>
-            <groupId>org.geckoprojects.mongo</groupId>
-            <artifactId>org.gecko.mongo.osgi.api</artifactId>
-            <version>6.0.0</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
         </dependency>
+
         <dependency>
-            <groupId>org.geckoprojects.emf.persistence</groupId>
-            <artifactId>org.gecko.mongo.osgi.component</artifactId>
-            <version>6.0.6</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
         </dependency>
+
     </dependencies>
+
+
+
 
 </project>

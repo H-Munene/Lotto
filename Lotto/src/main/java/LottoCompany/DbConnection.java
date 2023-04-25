@@ -1,16 +1,15 @@
 package LottoCompany;
 
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
 public class DbConnection {
 
     public static void main(String[] args){
-        /*try {
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
-            DB db = mongoClient.getDatabase("CarClub");
-
-            }
-        }catch(Exception e){
-
-        }*/
+        //create Mongo Connection
     }
 }
