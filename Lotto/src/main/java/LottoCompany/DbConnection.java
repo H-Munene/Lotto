@@ -10,6 +10,7 @@ import org.bson.Document;
 public class DbConnection {
 
     public static void main(String[] args){
-        //MongoClient = new MongoClient();
+        //MongoClient = new MongoClients();
+
     }
 }
