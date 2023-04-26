@@ -5,5 +5,5 @@ public interface LottoSys_interface {
     void generate_winning_numbers(); // generates the winning numbers
     void compare_selection_winNumbs(LottoPlayer player);/*compares selection and
      winning_numbers arraylists*/
-    //void create_gameid(); //creates a unique gameid for an entry
+    void create_gameid(); //creates a unique gameid for an entry
 }

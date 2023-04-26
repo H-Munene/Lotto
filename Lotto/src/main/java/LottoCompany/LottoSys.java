@@ -52,4 +52,19 @@ public class LottoSys implements LottoSys_interface{
     public void compare_selection_winNumbs(LottoPlayer player) {
         System.out.println(this.winning_numbers == player.getSelection());
     }
+
+    //generates gameid for an entry
+    @Override
+    public void create_gameid() {
+        int length = 6;
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        String randomString = sb.toString();
+        System.out.println(randomString);
+    }
 }
+
