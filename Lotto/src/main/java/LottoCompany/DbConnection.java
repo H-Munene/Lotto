@@ -11,6 +11,7 @@ import org.bson.Document;
 public class DbConnection {
 
     public static void main(String[] args){
+
         String connectionString = "mongodb+srv://hezekiahmunene:12345@cluster1.gfdfvl8.mongodb.net/?retryWrites=true&w=majority";
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
