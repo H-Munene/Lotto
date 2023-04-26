@@ -7,6 +7,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 public class DbConnection {
 
@@ -27,6 +28,23 @@ public class DbConnection {
                 MongoDatabase database = mongoClient.getDatabase("admin");
                 database.runCommand(new Document("ping", 1));
                 System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
+
+
+                /*try (MongoClient mongoClients = MongoClients.create(System.getProperty("mongodb.uri"))) {
+
+                    MongoDatabase sampleTrainingDB = mongoClients.getDatabase("LottoDB");
+                    MongoCollection<Document> gradesCollection = sampleTrainingDB.getCollection("LottoPlayers");
+
+
+                    Document student = new Document("_id", new ObjectId());
+                    student.append("username", "Sammy Musangi")
+                            .append("ID", "34456883");
+
+                    gradesCollection.insertOne(student);
+
+                }*/
+
+
             } catch (MongoException e) {
                 e.printStackTrace();
             }
