@@ -11,7 +11,8 @@ public class LottoSys implements LottoSys_interface{
     public ArrayList<Integer> winning_numbers;
 
     public LottoSys() {
-        //generate_winning_numbers();
+        /*create_gameid();
+        generate_winning_numbers();*/
     }
 
     public ArrayList<Integer> getWinning_numbers() {
@@ -35,8 +36,10 @@ public class LottoSys implements LottoSys_interface{
 
         if(check.size() == WINNING){
             setWinning_numbers(new ArrayList<>(check));
+            System.out.println(getWinning_numbers());
+        }else{
+            generate_winning_numbers(); // regenerate numbers
         }
-        System.out.println(getWinning_numbers());
     }
 
     /*
@@ -49,5 +52,4 @@ public class LottoSys implements LottoSys_interface{
     public void compare_selection_winNumbs(LottoPlayer player) {
         System.out.println(this.winning_numbers == player.getSelection());
     }
-
 }

@@ -15,8 +15,8 @@ public class LottoPlayer implements LottoPlayer_interface {
 
     //constructor
     public LottoPlayer(){
-        //user_details();
-        //make_selection();
+        /*user_details();
+        make_selection();*/
     }
 
     //getters and setters
