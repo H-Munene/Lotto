@@ -12,9 +12,11 @@ public class LottoSys implements LottoSys_interface {
    //public boolean win = false;
     public ArrayList<Integer> winning_numbers;
 
+    public boolean win = false;
+
     public LottoSys() {
-        /*create_gameid();
-        generate_winning_numbers();*/
+        create_gameid();
+        generate_winning_numbers();
     }
 
     public ArrayList<Integer> getWinning_numbers() {
@@ -32,15 +34,19 @@ public class LottoSys implements LottoSys_interface {
 
         for (int i = 0; i < 6; i++) {
             int randomNumber = random.nextInt(40);
+            //add random numbers to check hash set
             check.add(randomNumber);
-            //System.out.println(randomNumber);
         }
 
+        //if check hash set != WINNING (6)
+        //implies there were repeating rand numbers
         if(check.size() == WINNING){
             setWinning_numbers(new ArrayList<>(check));
             System.out.println(getWinning_numbers());
         }else{
-            generate_winning_numbers(); // regenerate numbers
+            //rand numbers are thus recreated till hash set
+            //has size equal to WINNING
+            generate_winning_numbers();
         }
     }
 
@@ -52,7 +58,14 @@ public class LottoSys implements LottoSys_interface {
      */
     @Override
     public void compare_selection_winNumbs(LottoPlayer player) {
-        System.out.println(this.winning_numbers == player.getSelection());
+        win = this.winning_numbers == player.getSelection();
+
+        if (win){
+            System.out.println("Congratulations. You have won");
+        }else{
+            System.out.println();
+            System.out.println("Numbers do not match. Try again!");
+        }
     }
 
     //generates gameid for an entry
