@@ -1,4 +1,4 @@
-package LottoCompany;
+package LottoCompany.operations;
 
 abstract public class CRUD {
     abstract void create();
