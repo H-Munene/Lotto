@@ -17,7 +17,7 @@ public class DbConnection {
         try {
             //creates connection
             this.connection = DriverManager.getConnection(jdbcUrl);
-            System.out.println("Successful Connection");
+
         } catch (SQLException ex ){
             System.out.println("Something went wrong!");
             ex.printStackTrace();

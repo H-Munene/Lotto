@@ -1,11 +1,15 @@
 package LottoCompany.player;
 
+import LottoCompany.operations.DatabaseOperations;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LottoPlayer implements LottoPlayer_interface {
+    private DatabaseOperations databaseOperations;
 
     //data members
     public String name; // name of the player
@@ -13,9 +17,18 @@ public class LottoPlayer implements LottoPlayer_interface {
     public ArrayList<Integer> selection= new ArrayList<>(); // player's choice numbers
 
     //constructor
-    public LottoPlayer(){
+    private LottoPlayer(){
         user_details();
-        make_selection();
+//        make_selection();
+    }
+
+    private static LottoPlayer lottoPlayer = null;
+
+    public static LottoPlayer getInstance() {
+        if(lottoPlayer == null){
+            lottoPlayer = new LottoPlayer();
+        }
+        return lottoPlayer;
     }
 
     //getters and setters
@@ -90,9 +103,17 @@ public class LottoPlayer implements LottoPlayer_interface {
             if(name.matches("[a-zA-z ]+")){
                 setName(name);
 
-                System.out.println("Your name and ID have been successfully set");
+                try{
+                    DatabaseOperations dbOperations = DatabaseOperations.getInstance();
 
+                    // Set the lottoPlayer instance in dbOperations
+                    dbOperations.setLottoPlayer(this);
 
+                    // Now you can call the create method to insert data into the database
+                    dbOperations.create();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
 
             }else{
                 System.out.println("Enter a valid name");
@@ -115,5 +136,7 @@ public class LottoPlayer implements LottoPlayer_interface {
 
     }
     //methods
+
+
 
 }
