@@ -1,21 +1,21 @@
 package LottoCompany.operations;
 
-
 import LottoCompany.player.LottoPlayer;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseOperations extends CRUD {
 
-    //refers to the connection instance
+    //refers to the Connection instance
     //this instance is used in database operations
     private Connection connection;
-    private LottoPlayer lottoPlayer;
 
+    //DatabaseOperations class instance
     private static DatabaseOperations databaseOperationsInstance;
+
+    private LottoPlayer lottoPlayer;
 
     public void setLottoPlayer(LottoPlayer lottoPlayer) {
         this.lottoPlayer = lottoPlayer;
@@ -24,6 +24,8 @@ public class DatabaseOperations extends CRUD {
     private DatabaseOperations() throws SQLException{
         this.connection = DbConnection.getInstance().getConnection();
     }
+
+    //ensures there is only one instance of the class running
     public static DatabaseOperations getInstance() throws SQLException {
         if (databaseOperationsInstance == null) {
             databaseOperationsInstance = new DatabaseOperations();
@@ -32,9 +34,10 @@ public class DatabaseOperations extends CRUD {
         return databaseOperationsInstance;
     }
 
+    //overriden methods
     @Override
     public void create() throws SQLException{
-        //created a prepared statement
+        //sql query to insert data
         String query = "INSERT INTO PLAYERS (userID, username) VALUES (?,?)";
 
         //enclose in  a try catch

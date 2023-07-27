@@ -4,12 +4,18 @@ import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/*
+    SQLite
+ */
 public class DbConnection {
 
-    //refers to an instance of dbConnection
+    //refers to an instance of DbConnection class
     private static DbConnection instance;
 
+    //refers to instance of connection to database
     private Connection connection = null;
+
+
     String jdbcUrl = "jdbc:sqlite:/C:\\sqlite\\databases\\lottoDB.db";
 
     //private constructor to prevent direct instantiation
@@ -19,14 +25,15 @@ public class DbConnection {
             this.connection = DriverManager.getConnection(jdbcUrl);
 
         } catch (SQLException ex ){
+            //if connection fails
             System.out.println("Something went wrong!");
             ex.printStackTrace();
         }
     }
 
-    //returns a single dbConnection class instance
+    //returns a single DbConnection class instance
     public static DbConnection getInstance() throws SQLException {
-        //checks if there is already an instance of the class or not
+        //checks for DbConnection instance
         if (instance == null) {
             instance = new DbConnection();
         } else if (instance.getConnection().isClosed()){

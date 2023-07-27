@@ -9,7 +9,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LottoPlayer implements LottoPlayer_interface {
-    private DatabaseOperations databaseOperations;
 
     //data members
     public String name; // name of the player
@@ -24,6 +23,7 @@ public class LottoPlayer implements LottoPlayer_interface {
 
     private static LottoPlayer lottoPlayer = null;
 
+    //ensures there is only once instance of LottoPlayer
     public static LottoPlayer getInstance() {
         if(lottoPlayer == null){
             lottoPlayer = new LottoPlayer();
@@ -56,31 +56,45 @@ public class LottoPlayer implements LottoPlayer_interface {
         this.selection = selection;
     }
 
+    //gets 6 unique numbers from user
     @Override
     public void make_selection() {
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Enter your selection of numbers (1-39): ");
+            //loop to take in 6 numbers
             for (int i = 0; i <= 5; i++) {
                 selection.add(scanner.nextInt());
             }
 
             HashSet<Integer> check = new HashSet<>();
+            //takes numbers in selection(arraylist)
             for(int i: selection){
+                //validates if the numbers fall within range
                 if(i>0 || i <40){
+                    //adds them to the hash set
                     check.add(i);
                 }else {
+                    //re-enter numbers if out of range
                     System.out.println("Enter numbers within 1-39 range!!");
                     make_selection();
                 }
             }
+
+            //compares selection(arraylist) and check(hashset)
+            /*
+            if there are e.g 3 redundant numbers,7, in selection, only a single number
+            7,will be retained. This results in different sizes of the collections
+             */
             if(selection.size()!= check.size()){
                 System.out.println("Enter unique numbers only");
                 System.out.println();
-
+                //re-enter numbers
                 make_selection();
             }else{
+                //no redundant numbers
                 System.out.println("Selection made successfully");
+                //displays the chosen numbers
                 show_selection();
             }
         }catch(InputMismatchException e){
@@ -100,22 +114,29 @@ public class LottoPlayer implements LottoPlayer_interface {
             //enter player name
             System.out.print("Enter your name: ");
             name = scanner.nextLine();
+            //limits to alphabet characters only
             if(name.matches("[a-zA-z ]+")){
                 setName(name);
 
                 try{
                     DatabaseOperations dbOperations = DatabaseOperations.getInstance();
 
-                    // Set the lottoPlayer instance in dbOperations
+                    /*
+                    represents a reference to a LottoPlayer object.
+                    By calling the setLottoPlayer method with 'this' as an argument,
+                    the current instance of the LottoPlayer class
+                    is passed to the setLottoPlayer method
+                     */
                     dbOperations.setLottoPlayer(this);
 
-                    // Now you can call the create method to insert data into the database
+                    //call the create method to insert data into the database
                     dbOperations.create();
                 } catch (SQLException e){
                     e.printStackTrace();
                 }
 
             }else{
+                // name != alphabet letters
                 System.out.println("Enter a valid name");
                 System.out.println();
                 user_details();
@@ -127,6 +148,8 @@ public class LottoPlayer implements LottoPlayer_interface {
         }
     }
 
+
+    //displays the numbers selected
     @Override
     public void show_selection() {
         System.out.println();
