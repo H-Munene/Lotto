@@ -1,2 +1,4 @@
-package LottoCompany.operations;public class Main {
+package LottoCompany.operations;
+
+public class Main {
 }

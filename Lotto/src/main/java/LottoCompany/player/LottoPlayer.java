@@ -91,6 +91,9 @@ public class LottoPlayer implements LottoPlayer_interface {
                 setName(name);
 
                 System.out.println("Your name and ID have been successfully set");
+
+
+
             }else{
                 System.out.println("Enter a valid name");
                 System.out.println();
