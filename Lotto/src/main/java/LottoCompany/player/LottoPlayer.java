@@ -19,7 +19,7 @@ public class LottoPlayer implements LottoPlayer_interface {
     //constructor
     private LottoPlayer(){
         user_details();
-//        make_selection();
+        make_selection();
     }
 
     private static LottoPlayer lottoPlayer = null;
